@@ -6,12 +6,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 key="SMARTSHEET_ACCESS_TOKEN"
+id = "SHEET_ID"
+api_key="COINLAYER_API_KEY"
 sheet_token=os.getenv(key)
+sheetId = os.getenv(id)
+coin_key = os.getenv(api_key)
 
 smartsheet_client = smartsheet.Smartsheet(sheet_token)
-sheetId = '4144824786937732'
+
 sheet = smartsheet_client.Sheets.get_sheet(sheetId)
-url = 'http://api.coinlayer.com/live?access_key=bbd1a180a4409ec39b8caaf9266ed399'
+url = f'http://api.coinlayer.com/live?access_key={coin_key}'
 
 def call_api(api_url):
     r = requests.get(api_url)
